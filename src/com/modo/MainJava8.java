@@ -21,7 +21,6 @@ public class MainJava8 {
 
         MainJava8.exerciseModo2ApiPost(auth, apiHostUrl);
         MainJava8.exerciseModo2ApiGet(auth, apiHostUrl);
-
     }
 
     private static void exerciseModo2ApiPost(Modo2Auth auth, String apiHostUrl) throws IOException {
@@ -75,7 +74,7 @@ public class MainJava8 {
 
     private static void exerciseModo2ApiGet(Modo2Auth auth, String apiHostUrl) throws IOException {
         String postApiUri = "/v2/vault/public_key";
-        String authToken = auth.createModoToken(postApiUri, "");
+        String authToken = auth.createModoToken(postApiUri);
 
         URL url = new URL(apiHostUrl + postApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

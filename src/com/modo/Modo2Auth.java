@@ -47,7 +47,7 @@ public class Modo2Auth {
 
     // Create a token, utilizing the request body, usually for a POST, PUT, or DELETE request
     public String createModoToken(String uri, String requestBody) {
-        // Return early for empty request body
+        // Null request body is assumed to be empty, i.e. for a GET request
         if (requestBody == null)
             requestBody = "";
 
