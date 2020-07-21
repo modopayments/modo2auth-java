@@ -73,10 +73,10 @@ public class MainJava8 {
     }
 
     private static void exerciseModo2ApiGet(Modo2Auth auth, String apiHostUrl) throws IOException {
-        String postApiUri = "/v2/vault/public_key";
-        String authToken = auth.createModoToken(postApiUri);
+        String getApiUri = "/v2/vault/public_key";
+        String authToken = auth.createModoToken(getApiUri);
 
-        URL url = new URL(apiHostUrl + postApiUri);
+        URL url = new URL(apiHostUrl + getApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-Type", "application/json");
