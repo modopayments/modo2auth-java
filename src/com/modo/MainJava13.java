@@ -12,15 +12,19 @@ public class MainJava13 {
     private static final String AUTH_HEADER = "Authorization";
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        String apiHostUrl = "MODO_HOST_URL_HERE";
-        String apiKey = "API_KEY_HERE";
-        String apiSecret = "API_SECRET_HERE";
+        //String apiHostUrl = "MODO_HOST_URL_HERE";
+        //String apiKey = "API_KEY_HERE";
+        //String apiSecret = "API_SECRET_HERE";
+        String apiHostUrl = "https://checkout.int-31.modopayments.io";
+        String apiKey = "a8BR7AqB-xs2HoIdEi_wtMAkSNXvLAe4";
+        String apiSecret = "CAvku68wPkn6aB0hKWKpi-9OOemjwZTkgRIQbhSj37MMikpCjmooXI8gdXfM_1cs";
 
-        String postApiUri = "/v2/reports";
-        String requestBody = "{\"start_date\": \"2020-07-13T00:00:00Z\",\"end_date\": \"2020-07-13T23:59:59Z\"}";
+        String postApiUri = "/v3/checkout/list";
+        String requestBody = "{\"checkout_ids\": []}";
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
         String authToken = auth.createModoToken(postApiUri, requestBody);
+        System.out.println("MODO2 auth token: " + authToken);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest postRequest = HttpRequest.newBuilder()
@@ -43,9 +47,9 @@ public class MainJava13 {
             return;
         }
 
-
-        String getApiUri = "/v2/vault/public_key";
+        String getApiUri = "/v3/vault/modo_public_key";
         authToken = auth.createModoToken(getApiUri, "");
+        System.out.println("MODO2 auth token: " + authToken);
 
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(apiHostUrl+getApiUri))

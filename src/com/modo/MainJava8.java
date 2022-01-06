@@ -13,23 +13,27 @@ public class MainJava8 {
     private static final String AUTH_HEADER = "Authorization";
 
     public static void main(String[] args) throws IOException {
-        String apiHostUrl = "MODO_HOST_URL_HERE";
-        String apiKey = "API_KEY_HERE";
-        String apiSecret = "API_SECRET_HERE";
+        //String apiHostUrl = "MODO_HOST_URL_HERE";
+        //String apiKey = "API_KEY_HERE";
+        //String apiSecret = "API_SECRET_HERE";
+        String apiHostUrl = "https://checkout.int-31.modopayments.io";
+        String apiKey = "a8BR7AqB-xs2HoIdEi_wtMAkSNXvLAe4";
+        String apiSecret = "CAvku68wPkn6aB0hKWKpi-9OOemjwZTkgRIQbhSj37MMikpCjmooXI8gdXfM_1cs";
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
 
-        MainJava8.exerciseModo2ApiPost(auth, apiHostUrl);
-        MainJava8.exerciseModo2ApiGet(auth, apiHostUrl);
+        exerciseModo2ApiPost(auth, apiHostUrl);
+        exerciseModo2ApiGet(auth, apiHostUrl);
     }
 
     private static void exerciseModo2ApiPost(Modo2Auth auth, String apiHostUrl) throws IOException {
-        String postApiUri = "/v2/reports";
-        String requestBody = "{\"start_date\": \"2020-07-13T00:00:00Z\",\"end_date\": \"2020-07-13T23:59:59Z\"}";
+        String postApiUri = "/v3/checkout/list";
+        String requestBody = "{\"checkout_ids\": []}";
         byte[] bodyOut = requestBody.getBytes(StandardCharsets.US_ASCII);
         int bodyLength = bodyOut.length;
 
         String authToken = auth.createModoToken(postApiUri, requestBody);
+        System.out.println("MODO2 auth token: " + authToken);
 
         URL url = new URL(apiHostUrl + postApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -73,8 +77,9 @@ public class MainJava8 {
     }
 
     private static void exerciseModo2ApiGet(Modo2Auth auth, String apiHostUrl) throws IOException {
-        String getApiUri = "/v2/vault/public_key";
+        String getApiUri = "/v3/vault/modo_public_key";
         String authToken = auth.createModoToken(getApiUri);
+        System.out.println("MODO2 auth token: " + authToken);
 
         URL url = new URL(apiHostUrl + getApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
