@@ -13,12 +13,9 @@ public class MainJava8 {
     private static final String AUTH_HEADER = "Authorization";
 
     public static void main(String[] args) throws IOException {
-        //String apiHostUrl = "MODO_HOST_URL_HERE";
-        //String apiKey = "API_KEY_HERE";
-        //String apiSecret = "API_SECRET_HERE";
-        String apiHostUrl = "https://checkout.int-31.modopayments.io";
-        String apiKey = "a8BR7AqB-xs2HoIdEi_wtMAkSNXvLAe4";
-        String apiSecret = "CAvku68wPkn6aB0hKWKpi-9OOemjwZTkgRIQbhSj37MMikpCjmooXI8gdXfM_1cs";
+        String apiHostUrl = "MODO_HOST_URL_HERE";
+        String apiKey = "API_KEY_HERE";
+        String apiSecret = "API_SECRET_HERE";
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
 
