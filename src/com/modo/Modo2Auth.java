@@ -2,7 +2,6 @@ package com.modo;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
