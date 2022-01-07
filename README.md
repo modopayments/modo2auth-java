@@ -1,6 +1,6 @@
 ## modo2auth-java
 
-> A core Java solution to generate authentication tokens to communicate with the Modo servers
+> A core Java solution to generate authentication tokens to communicate with Modo APIs
 
 ### Prerequesites
 
@@ -23,21 +23,22 @@ See this code in action by running the class `./src/com/modo/MainJava8.java` usi
 ### Example Usage - Java 13
 This example uses core Java 13 libraries to make a GET and POST request. It differs from the Java 8 example in using the `java.net.http package` that was added in Java 11. You can use your preferred method or library.
 
-See this code in action by running the class `./src/com/modo/MainJava13.java` using the Java1.13 JRE. 
+See this code in action by running the class `./src/com/modo/MainJava13.java` using the Java1.13 JRE or later. 
 
 ## Modo2Auth.java
 
 ### `public Modo2Auth(String apiId, String apiSecret)`
 
-The constructor for Modo2Auth takes in the apiKey and apiSecret and sets up the appropriate hashing algorithms to generate a Modo2 Auth Token. 
+The constructor for Modo2Auth takes in the apiKey and apiSecret and sets up the appropriate hashing algorithms to generate a Modo2Auth token. 
 
-Note: If there is an issue loading the hashing algorithms, a Runtime Error will be thrown out of this constructor. As of 7/21/2020, this constructor works with:
+Note: If there is an issue loading the hashing algorithms, a Runtime Error will be thrown out of this constructor. As of 2022-01-07, this constructor works with:
 - Java 1.8 - AdoptOpenJDK - 8.0.262.j9
 - Java 1.13 - OpenJDK - 13.0.1
+- Java 1.17 - OpenJDK - 17.0.1
 
 ### `public String createModoToken(String uri, String requestBody)`
 
-Returns a Modo2 Auth Token string for a request that has a body (POST, PUT, etc.). If request body is null, then token generation will proceed as if it is a GET request.
+Returns a Modo2Auth token string for a request that has a body (POST, PUT, etc.). If request body is null, then token generation will proceed as if it is a GET request.
 
 No exceptions expected during the execution of this function
 
@@ -46,6 +47,6 @@ No exceptions expected during the execution of this function
 
 ### `public String createModoToken(String uri)`
 
-Returns a Modo2 Auth Token string for a request that does not have a body (i.e. GET). This method simply calls `public String createModoToken(String uri, String requestBody)` with requestBody equal to empty string.
+Returns a Modo2Auth token string for a request that does not have a body (i.e. GET). This method simply calls `public String createModoToken(String uri, String requestBody)` with requestBody equal to empty string.
 
 - `uri` (string) - The request path targeted by this request
