@@ -30,7 +30,6 @@ public class MainJava8 {
         int bodyLength = bodyOut.length;
 
         String authToken = auth.createModoToken(postApiUri, requestBody);
-        System.out.println("MODO2 auth token: " + authToken);
 
         URL url = new URL(apiHostUrl + postApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -76,7 +75,6 @@ public class MainJava8 {
     private static void exerciseModo2ApiGet(Modo2Auth auth, String apiHostUrl) throws IOException {
         String getApiUri = "/v3/vault/modo_public_key";
         String authToken = auth.createModoToken(getApiUri);
-        System.out.println("MODO2 auth token: " + authToken);
 
         URL url = new URL(apiHostUrl + getApiUri);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();

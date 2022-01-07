@@ -21,7 +21,6 @@ public class MainJava13 {
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
         String authToken = auth.createModoToken(postApiUri, requestBody);
-        System.out.println("MODO2 auth token: " + authToken);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest postRequest = HttpRequest.newBuilder()
@@ -46,7 +45,6 @@ public class MainJava13 {
 
         String getApiUri = "/v3/vault/modo_public_key";
         authToken = auth.createModoToken(getApiUri, "");
-        System.out.println("MODO2 auth token: " + authToken);
 
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(apiHostUrl+getApiUri))
