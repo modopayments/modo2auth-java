@@ -53,7 +53,7 @@ public class Modo2Auth {
 
         // Generate SHA for request body
         byte[] hashBytes = shaDigest.digest(requestBody.getBytes());
-        String bodySha = toHexString(hashBytes).replace("-", "").toLowerCase();
+        String bodySha = bytesToHexString(hashBytes).replace("-", "").toLowerCase();
 
         // Create payload Base64 string
         String currentTime = Long.toString(Instant.now().toEpochMilli()).substring(0, 10);
@@ -80,19 +80,15 @@ public class Modo2Auth {
         return signature.replace("+", "-").replace("/", "_").replaceAll("=+$", "");
     }
 
-    public static String toHexString(byte[] hash) {
-        // Convert byte array into signum representation
-        BigInteger number = new BigInteger(1, hash);
-
-        // Convert message digest into hex value
-        StringBuilder hexString = new StringBuilder(number.toString(16));
-
-        // Pad with leading zeros
-        while (hexString.length() < 32) {
-            hexString.insert(0, '0');
+    private static final byte[] HEX_CHARSET = "0123456789ABCDEF".getBytes(StandardCharsets.US_ASCII);
+    
+    public static String bytesToHexString(byte[] bytes) {
+        byte[] hexChars = new byte[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_CHARSET[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_CHARSET[v & 0x0F];
         }
-
-        return hexString.toString();
+        return new String(hexChars, StandardCharsets.UTF_8);
     }
-
 }

@@ -16,8 +16,8 @@ public class MainJava13 {
         String apiKey = "API_KEY_HERE";
         String apiSecret = "API_SECRET_HERE";
 
-        String postApiUri = "/v2/reports";
-        String requestBody = "{\"start_date\": \"2020-07-13T00:00:00Z\",\"end_date\": \"2020-07-13T23:59:59Z\"}";
+        String postApiUri = "/v3/checkout/list";
+        String requestBody = "{\"checkout_ids\": []}";
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
         String authToken = auth.createModoToken(postApiUri, requestBody);
@@ -43,8 +43,7 @@ public class MainJava13 {
             return;
         }
 
-
-        String getApiUri = "/v2/vault/public_key";
+        String getApiUri = "/v3/vault/modo_public_key";
         authToken = auth.createModoToken(getApiUri, "");
 
         HttpRequest getRequest = HttpRequest.newBuilder()

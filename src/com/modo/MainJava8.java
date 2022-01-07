@@ -19,13 +19,13 @@ public class MainJava8 {
 
         Modo2Auth auth = new Modo2Auth(apiKey, apiSecret);
 
-        MainJava8.exerciseModo2ApiPost(auth, apiHostUrl);
-        MainJava8.exerciseModo2ApiGet(auth, apiHostUrl);
+        exerciseModo2ApiPost(auth, apiHostUrl);
+        exerciseModo2ApiGet(auth, apiHostUrl);
     }
 
     private static void exerciseModo2ApiPost(Modo2Auth auth, String apiHostUrl) throws IOException {
-        String postApiUri = "/v2/reports";
-        String requestBody = "{\"start_date\": \"2020-07-13T00:00:00Z\",\"end_date\": \"2020-07-13T23:59:59Z\"}";
+        String postApiUri = "/v3/checkout/list";
+        String requestBody = "{\"checkout_ids\": []}";
         byte[] bodyOut = requestBody.getBytes(StandardCharsets.US_ASCII);
         int bodyLength = bodyOut.length;
 
@@ -73,7 +73,7 @@ public class MainJava8 {
     }
 
     private static void exerciseModo2ApiGet(Modo2Auth auth, String apiHostUrl) throws IOException {
-        String getApiUri = "/v2/vault/public_key";
+        String getApiUri = "/v3/vault/modo_public_key";
         String authToken = auth.createModoToken(getApiUri);
 
         URL url = new URL(apiHostUrl + getApiUri);
